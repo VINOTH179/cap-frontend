@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MOVIES, SCREENS, THEATERS } from "../data/movieData";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
@@ -31,9 +31,25 @@ export default function MovieDetails() {
   const [selectedTheater, setSelectedTheater] = useState(null);
   const [selectedScreen, setSelectedScreen] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookedSeats, setBookedSeats] = useState([]); // State to store booked seats
   const [openDialog, setOpenDialog] = useState(false);
   const [showTrailer, setShowTrailer] = useState(false);
   const [seatError, setSeatError] = useState(false); // State for seat selection error
+
+  useEffect(() => {
+    // Simulate fetching booked seats from an API
+    const fetchBookedSeats = () => {
+      // Simulated API response
+      const bookedSeatsData = [
+        { screenId: 1, seatIndex: 2 },
+        { screenId: 1, seatIndex: 3 },
+        // Add more booked seats here
+      ];
+      setBookedSeats(bookedSeatsData.map(seat => seat.screenId * 100 + seat.seatIndex));
+    };
+
+    fetchBookedSeats();
+  }, []);
 
   const handleTheaterSelect = (theaterId) => {
     const theater = THEATERS.find((theater) => theater.id === theaterId);
@@ -52,6 +68,10 @@ export default function MovieDetails() {
 
   const handleSeatSelect = (screenId, seatIndex) => {
     const selectedSeat = screenId * 100 + seatIndex;
+    if (bookedSeats.includes(selectedSeat)) {
+      alert("This seat is already booked. Please choose another seat.");
+      return;
+    }
     setSelectedSeats(prevSeats => {
       if (prevSeats.includes(selectedSeat)) {
         return prevSeats.filter(seat => seat !== selectedSeat);
@@ -71,7 +91,11 @@ export default function MovieDetails() {
     if (selectedSeats.length === 0) {
       setSeatError(true); // Show seat selection error if no seats are selected
     } else {
-      setOpenDialog(true);
+      // Simulate API call to book seats
+      setTimeout(() => {
+        setBookedSeats(prevBookedSeats => [...prevBookedSeats, ...selectedSeats]);
+        setOpenDialog(true);
+      }, 500);
     }
   };
 
@@ -129,7 +153,7 @@ export default function MovieDetails() {
             ))}
           </Select>
           {selectedTheater && (
-            <Typography variant="h5"><br/>Choose your Time:</Typography>
+            <Typography variant="h5"><br />Choose your Time:</Typography>
           )}
           {selectedTheater && (
             <Select
@@ -147,22 +171,23 @@ export default function MovieDetails() {
           )}
           {selectedScreen && (
             <>
-              <Typography variant="h5"><br/>Choose your Seats:</Typography>
+              <Typography variant="h5"><br />Choose your Seats:</Typography>
               <Grid container spacing={2}>
                 {selectedScreen.seats.map((seat, seatIndex) => (
                   <Grid item key={`${selectedScreen.id}-${seatIndex}`} xs={4} sm={3}>
                     <Button
                       fullWidth
                       variant={selectedSeats.includes(selectedScreen.id * 100 + seatIndex) ? 'contained' : 'outlined'}
-                      color="primary"
+                      color={bookedSeats.includes(selectedScreen.id * 100 + seatIndex) ? 'secondary' : 'primary'}
                       onClick={() => handleSeatSelect(selectedScreen.id, seatIndex)}
+                      disabled={bookedSeats.includes(selectedScreen.id * 100 + seatIndex)}
                     >
                       {seatIndex + 1}
                     </Button>
                   </Grid>
                 ))}
               </Grid>
-              <Typography variant="h6"><br/>Total Amount: ₹{calculateTotalAmount()}</Typography>
+              <Typography variant="h6"><br />Total Amount: ₹{calculateTotalAmount()}</Typography>
               <Button onClick={handleBooking} variant="contained" color="primary" style={{ float: 'right' }}>Pay Now</Button>
               {seatError && (
                 <Typography variant="body2" color="error" style={{ marginTop: 10, float: 'right' }}>Please select your seats before proceeding to payment.</Typography>
@@ -187,32 +212,31 @@ export default function MovieDetails() {
               <strong>Movie:</strong> {selectedMovie.title}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              <strong>Theatre:</strong>   {selectedTheater ? selectedTheater.name : 'N/A'}
-</Typography>
-             <Typography variant="body1" gutterBottom>
-               <strong>Screen:</strong> {selectedScreen ? selectedScreen.time : 'N/A'}
-             </Typography>
-             <Typography variant="body1" gutterBottom>
-               <strong>Total Seats:</strong> {selectedSeats.length}
-             </Typography>
-             <Divider />
-              <Typography variant="h6">Seats:</Typography>
-             <List>
-               {selectedSeats.map(seat => (
-                 <ListItem key={seat}>
-                   <ListItemText primary={`Seat ${seat % 100 + 1}`} />
-                 </ListItem>
-               ))}
-             </List>
-             <Typography variant="h6">Total Amount: ₹{calculateTotalAmount()}</Typography>
-           </DialogContentText>
-         </DialogContent>
-         <DialogActions>
-           <Button onClick={handleDialogClose} color="primary">OK</Button>
-         </DialogActions>
-       </Dialog>
-     </Container>
-   );
- }
- 
+              <strong>Theatre:</strong> {selectedTheater ? selectedTheater.name : 'N/A'}
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              <strong>Screen:</strong> {selectedScreen ? selectedScreen.time : 'N/A'}
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              <strong>Total Seats:</strong> {selectedSeats.length}
+            </Typography>
+            <Divider />
+            <Typography variant="h6">Seats:</Typography>
+            <List>
+              {selectedSeats.map(seat => (
+                <ListItem key={seat}>
+                  <ListItemText primary={`Seat ${seat % 100 + 1}`} />
+                </ListItem>
+              ))}
+            </List>
+            <Typography variant="h6">Total Amount: ₹{calculateTotalAmount()}</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="primary">OK</Button>
+        </DialogActions>
+      </Dialog>
+    </Container>
+  );
+}
 

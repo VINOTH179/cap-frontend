@@ -31,52 +31,7 @@ body {
 }
 
 /* Login container */
-.login-container {
-  width: 400px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.login-container input {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-container button {
-  width: 100%;
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.login-container button:hover {
-  background-color: #0056b3;
-}
-
-.login-container .error-message {
-  color: #ff0000;
-  margin-top: 10px;
-}
-
-/* Signup container */
+.login-container,
 .signup-container {
   width: 400px;
   margin: 0 auto;
@@ -86,12 +41,14 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+.login-container h2,
 .signup-container h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
   color: #333;
 }
 
+.login-container input,
 .signup-container input {
   width: 100%;
   margin-bottom: 20px;
@@ -101,37 +58,41 @@ body {
   border-radius: 5px;
 }
 
+.login-container button,
 .signup-container button {
   width: 100%;
   padding: 12px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #28a745;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
+.login-container button:hover,
 .signup-container button:hover {
-  background-color: #218838;
+  filter: brightness(0.9);
 }
 
 /* Movie selection */
-.movie-selection {
+.movie-selection,
+.screen-selection {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 40px;
 }
 
-.movie {
+.movie,
+.screen {
   margin: 10px;
   cursor: pointer;
   transition: transform 0.5s;
 }
 
-.movie:hover {
+.movie:hover,
+.screen:hover {
   transform: translateY(-10px) rotateX(10deg);
 }
 
@@ -149,25 +110,11 @@ body {
 }
 
 /* Screen selection */
-.screen-selection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 40px;
-}
-
 .screen {
-  margin: 10px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
   transition: transform 0.5s, box-shadow 0.3s;
-}
-
-.screen:hover {
-  transform: translateY(-10px) rotateX(10deg);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .screen.selected {
@@ -180,19 +127,14 @@ body {
   color: #333;
 }
 
-.screen-time {
+.screen-time,
+.screen-movie {
   font-size: 1rem;
   margin-top: 5px;
   color: #555;
 }
 
-.screen-movie {
-  font-size: 1rem;
-  margin-top: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
+/* Seats selection */
 .screen-seats {
   display: flex;
   flex-wrap: wrap;
@@ -264,7 +206,6 @@ body {
   padding: 12px 24px;
   font-size: 1rem;
   color: #fff;
-  background-color: #28a745;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -272,7 +213,7 @@ body {
 }
 
 .payment button:hover {
-  background-color: #218838;
+  filter: brightness(0.9);
 }
 
 /* Ticket print */
@@ -299,7 +240,6 @@ body {
 
 .ticket .ticket-details {
   margin-bottom: 20px;
-  
 }
 
 .ticket .ticket-details h3 {
@@ -313,7 +253,6 @@ body {
   font-size: 1rem;
   margin-bottom: 5px;
   color: #ffffff;
-  text-decoration-color: #000000;
 }
 
 .ticket .ticket-seats {
@@ -332,7 +271,7 @@ body {
   align-items: center;
   border-radius: 50%;
   background-color: #007bff;
-  color: #090909;
+  color: #fff;
 }
 
 .ticket .seat-number {
@@ -349,6 +288,7 @@ body {
 .ticket .total-amount span {
   color: #28a745;
 }
+
 .ticket .button-container {
   text-align: center;
   margin-top: 20px;
@@ -365,18 +305,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.ticket .button-container
-{
-  padding: 12px 24px;
-  font-size: 1rem;
-  color: #181717;
-  background-color: #28a745;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .ticket .button-container button:hover {
-  background-color: #218838;
+  filter: brightness(0.9);
 }

@@ -54,19 +54,81 @@ export const SCREENS = [
   {
     id: 1,
     time: "10:00 AM",
-    theaterId: 1,
-    seats: Array(13).fill(1), // 13 seats available
+    theaterId: 1, // Mayajaal Cinemas
+    seats: Array(20).fill(1), // 13 seats available
   },
   {
     id: 2,
-    time: "2:00 PM",
-    theaterId: 1,
-    seats: Array(14).fill(1), // 14 seats available
+    time: "2:00 AM",
+    theaterId: 1, // Mayajaal Cinemas
+    seats: Array(25).fill(1), // 13 seats available
   },
   {
     id: 3,
-    time: "6:00 PM",
-    theaterId: 1,
-    seats: Array(14).fill(1), // 14 seats available
+    time: "6:00 AM",
+    theaterId: 1, // Mayajaal Cinemas
+    seats: Array(30).fill(1), // 13 seats available
+  },
+  {
+    id: 4,
+    time: "7:00 AM",
+    theaterId: 1, // Mayajaal Cinemas
+    seats: Array(25).fill(1), // 13 seats available
+  },
+  {
+    id: 5,
+    time: "11:00 AM",
+    theaterId: 2, // PVR Cinemas
+    seats: Array(20).fill(1), // 10 seats available
+  },
+
+ {
+  id: 6,
+    time: "10:00 AM",
+    theaterId: 2, // PVR Cinemas
+    seats: Array(20).fill(1), // 13 seats available
+  },
+
+  {
+    id: 7,
+    time: "2:00 AM",
+    theaterId: 2, // PVR Cinemas
+    seats: Array(25).fill(1), // 13 seats available
+  },
+  {
+    id: 8,
+    time: "6:00 AM",
+    theaterId: 2, // PVR Cinemas
+    seats: Array(30).fill(1), // 13 seats available
+  },
+  {
+    id: 9,
+    time: "7:00 AM",
+    theaterId: 2, // PVR Cinemas
+    seats: Array(25).fill(1), // 13 seats available
+  },
+  {
+    id: 10,
+    time: "10:00 AM",
+    theaterId: 3, // AGS Cinemas
+    seats: Array(20).fill(1), // 13 seats available
+  },
+  {
+    id: 11,
+    time: "2:00 AM",
+    theaterId: 3, // AGS Cinemas
+    seats: Array(25).fill(1), // 13 seats available
+  },
+  {
+    id: 12,
+    time: "6:00 AM",
+    theaterId: 3, // AGS Cinemas
+    seats: Array(30).fill(1), // 13 seats available
+  },
+  {
+    id: 13,
+    time: "7:00 AM",
+    theaterId: 3, // AGS Cinemas
+    seats: Array(25).fill(1), // 13 seats available
   },
 ];
